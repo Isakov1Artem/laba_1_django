@@ -1,0 +1,30 @@
+{% extends 'base.html'%}
+{% block title%}
+Галерея  - {{block.super}}
+{% endblock %}
+{% block content %}
+<div class="container-fluid gallery text-center">
+  <p class="display-3 mb-3">Галерея</p>
+  <div class="container-fluid p-0">
+  <div class="row" id="gallery">
+    {% for image in gallery%}
+
+    <div class="container-fluid pull-center col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 p-1 photo" id="animation" >
+      <a href="{{image.image.url}}" data-lightbox="example-set" ><img id="photo" src="{{image.image.url}}" class=" size_image m-2" ></a>
+
+
+      <form action="/like" method="GET" class="m-2">
+        <input type="hidden" name="like"  value="{{image.id}}" >
+        <input type="submit" name="like_2" value="Like" >
+      </form>
+      <form action="/dislike" method="GET">
+      <input type="hidden" name="dislike"  value="{{image.id}}">
+      <input type="submit" name="dislike_2" value="Dislike">
+      </form>
+    </div>
+
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
